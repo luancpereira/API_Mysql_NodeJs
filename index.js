@@ -76,18 +76,19 @@ app.post("/login", (req, res) => {
 });
 
 // Cadastro de Projetos
-app.post("/cadproject", (req, res) => {
-  const name = req.body.name;
-  const budget = req.body.budget;
-  const usuario = req.body.user;
+app.post("/sendtodb", (req, res) => {
+  const sr1 = req.body.sr1;
+  const sr2 = req.body.sr2;
+  const time = req.body.time;
+  const created_at = req.body.created_at
   db.query(
-    "INSERT INTO projects (name, budget, user) VALUES (?,?,?)",
-    [name, budget, usuario],
+    "INSERT INTO infoservo (sr1, sr2, time, created_at) VALUES (?,?,?,?)",
+    [sr1, sr2, time, created_at],
     (err, result) => {
       if (err) {
         res.send(err);
       }
-      res.send({ msg: "Projeto Criado!" });
+      res.send({ msg: "Ok" });
     }
   );
 });
